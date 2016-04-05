@@ -94,12 +94,12 @@ $('#playlist li').click(function(){
 
 //Volume Control
 $('#volume').change(function(){
-	audio.volume = parseFloat(this.value / 10);
+	audio.volume = this.value / 10;
 });
 
 //Time Duration
 function showDuration(){
-	$(audio).bind('timeupdate', function(){
+	$(audio).on('timeupdate', function(){
 		//Get Hours & Minutes
 		var s = parseInt(audio.currentTime % 60);
 		var m = parseInt(audio.currentTime / 60) % 60;

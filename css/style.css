@@ -1,4 +1,12 @@
-@import url("fonts/IndieFlower.ttf");
+@font-face {
+    font-family: 'IndieFlower';
+    src: url("../fonts/IndieFlower.ttf");
+}
+
+@font-face {
+    font-family: 'Lobster';
+    src: url("../fonts/Lobster-Regular.ttf");
+}
 
 *{
 	margin: 0;
@@ -125,7 +133,7 @@ button:active {
 #playlist li{
 	cursor: pointer;
 	margin: 5px;
-	font-family: 'Indie Flower', cursive;
+	font-family: 'IndieFlower', cursive;
 	font-size: 20px; 
 }
 
