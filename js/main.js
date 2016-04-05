@@ -33,28 +33,35 @@ function initAudio(elem){
 	elem.addClass('active');
 };
 
+function togglePlayButton(){
+	if (!audio.paused){
+		$('#play').hide();
+		$('#pause').show();
+	} else {
+		$('#pause').hide();
+		$('#play').show();
+	}
+};
+
 //Play button
 $('#play').click(function(){
 	audio.volume = volume;
 	audio.play();
-	$('#play').hide();
-	$('#pause').show();
+	togglePlayButton();
 	showDuration();
 });
 
 //Pause button
 $('#pause').click(function(){
 	audio.pause();
-	$('#pause').hide();
-	$('#play').show();
+	togglePlayButton();
 });
 
 //Stop Button
 $('#stop').click(function(){
 	audio.pause();
 	audio.currentTime = 0;
-	$('#pause').hide();
-	$('#play').show();
+	togglePlayButton();
 });
 
 //Next Button
@@ -65,10 +72,12 @@ $('#next').click(function(){
 		next = $('#playlist li:first-child')
 	}
 	initAudio(next);
-	$('#play').hide();
-	$('#pause').show();
 	audio.volume = volume;
+	// if (!audio.paused){
+
+	// }
 	audio.play();
+	togglePlayButton();
 	showDuration();
 });
 
@@ -80,10 +89,9 @@ $('#prev').click(function(){
 		prev = $('#playlist li:last-child')
 	}
 	initAudio(prev);
-	$('#play').hide();
-	$('#pause').show();
 	audio.volume = volume;
 	audio.play();
+	togglePlayButton();
 	showDuration();
 });
 
@@ -91,10 +99,9 @@ $('#prev').click(function(){
 $('#playlist li').click(function(){
 	audio.pause();
 	initAudio($(this));
-	$('#play').hide();
-	$('#pause').show();
 	audio.volume = volume;
 	audio.play();
+	togglePlayButton();
 	showDuration();
 });
 
