@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Audio player test</title>
+	<meta charset="UTF-8">
+	<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="container">
+		<div id="audio-image">
+			<img src="img/covers/seasons.jpeg" class="cover">
+		</div>
+		<div id="audio-player">
+			<div id="audio-info">
+				<span class="artist"></span>-<span class="title"></span>
+			</div>
+			<input id="volume" type="range" min="0" max="10" value="5">
+			<br>
+			<div id="audio-buttons">
+				<button id="prev"></button>
+				<button id="play"></button>
+				<button id="pause"></button>
+				<button id="stop"></button>
+				<button id="next"></button>
+			</div>
+			<div class="clearfix"></div>
+			<div id="tracker">
+				<div id="progressbar">
+						<span id="progress"></span>
+				</div>
+				<span id="duration"></span>
+			</div>
+				<div class="clearfix"></div>
+				<ul id="playlist">
+					<li song="Spring.mp3" artist="Vivaldi" cover="seasons.jpeg">Spring</li>
+					<li song="Summer.mp3" artist="Vivaldi" cover="seasons.jpeg">Summer</li>
+					<li song="Autumn.mp3" artist="Vivaldi" cover="seasons.jpeg">Autumn</li>
+					<li song="Winter.mp3" artist="Vivaldi" cover="seasons.jpeg">Winter</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
