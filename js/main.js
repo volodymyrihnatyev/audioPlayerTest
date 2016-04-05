@@ -1,6 +1,6 @@
 var audio;
 var volume =0.5;
-// $('#volume').value = 5;
+$('#volume').val($('#volume').data("default"));
 
 
 //hide pause button
