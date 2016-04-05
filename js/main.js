@@ -1,4 +1,6 @@
 var audio;
+var volume =0.5;
+// $('#volume').value = 5;
 
 
 //hide pause button
@@ -33,6 +35,7 @@ function initAudio(elem){
 
 //Play button
 $('#play').click(function(){
+	audio.volume = volume;
 	audio.play();
 	$('#play').hide();
 	$('#pause').show();
@@ -64,6 +67,7 @@ $('#next').click(function(){
 	initAudio(next);
 	$('#play').hide();
 	$('#pause').show();
+	audio.volume = volume;
 	audio.play();
 	showDuration();
 });
@@ -78,6 +82,7 @@ $('#prev').click(function(){
 	initAudio(prev);
 	$('#play').hide();
 	$('#pause').show();
+	audio.volume = volume;
 	audio.play();
 	showDuration();
 });
@@ -88,13 +93,14 @@ $('#playlist li').click(function(){
 	initAudio($(this));
 	$('#play').hide();
 	$('#pause').show();
+	audio.volume = volume;
 	audio.play();
 	showDuration();
 });
 
 //Volume Control
 $('#volume').change(function(){
-	audio.volume = this.value / 10;
+	volume = audio.volume = this.value / 10;
 });
 
 //Time Duration
