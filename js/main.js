@@ -11,14 +11,17 @@ function AudioPlayer(){
 	var $pauseButton = $('#pause');
 	var $stopButton = $('#stop');
 	var $playButton = $('#play');
-	var firtSong = $('#playlist li:first-child');
-	var lastSong = $('#playlist li:last-child');
-	var volume = $('#volume');
-	var activeAudio = $('#playlist li.active');
-	var audioInList = $('#playlist li');
-	var duration = $('#duration');
-	var progress = $('#progress');
-	var progressbar = $('#progressbar');
+	var $firtSong = $('#playlist li:first-child');
+	var $lastSong = $('#playlist li:last-child');
+	var $volume = $('#volume');
+	var $activeAudio = $('#playlist li.active');
+	var $audioInList = $('#playlist li');
+	var $duration = $('#duration');
+	var $progress = $('#progress');
+	var $progressbar = $('#progressbar');
+	var $title = $('#audio-player .title');
+	var $artist = $('#audio-player .artist');
+	var $coverImage = $('img.cover');
 
 	var progressValue = 0;
 	var volumeValue;
@@ -27,16 +30,16 @@ function AudioPlayer(){
 
 	this.init = function(){
 			//Set default volume value in DOM element
-			volume.val($(this).data("default"));
+			$volume.val($(this).data("default"));
 			
 			//Get default volume value
-			volumeValue = volume.val() / 10;
+			volumeValue = $volume.val() / 10;
 
 			//Hide pause button
 			$pauseButton.hide();
 
 			//Initialize first song
-			self.initAudio(firtSong);
+			self.initAudio($firtSong);
 
 			//Initialize events
 			$playButton.click(self.actions.play);
@@ -44,9 +47,9 @@ function AudioPlayer(){
 			$stopButton.click(self.actions.stop);
 			$nextButton.click(self.actions.next);
 			$prevButton.click(self.actions.prev);
-			volume.change(self.actions.volumeChange);
-			audioInList.click(self.actions.playAudioInList);
-			progressbar.click(self.actions.rewind);﻿
+			$volume.change(self.actions.volumeChange);
+			$audioInList.click(self.actions.playAudioInList);
+			$progressbar.click(self.actions.rewind);﻿
 	};
 
 	this.initAudio = function(elem){
@@ -59,25 +62,25 @@ function AudioPlayer(){
 		self.audio = new Audio('media/' + song);
 
 		if (!self.audio.currentTime){
-			$('#duration').html('0.00');
+			$duration.html('0.00');
 		}
 
-		$('#audio-player .title').text(title);
-		$('#audio-player .artist').text(artist);
+		$title.text(title);
+		$artist.text(artist);
 
 		//Insert cover image
-		$('img.cover').attr('src', 'img/covers/' + cover);
+		$coverImage.attr('src', 'img/covers/' + cover);
 
-		activeAudio.removeClass('active');
-		activeAudio = $(elem);
+		$activeAudio.removeClass('active');
+		$activeAudio = $(elem);
 		elem.addClass('active');
 	};
 	this.actions = {
 		next: function(){
 			self.audio.pause();
-			var next = activeAudio.next();
+			var next = $activeAudio.next();
 			if(next.length ==0){
-				next = firtSong;
+				next = $firtSong;
 			}
 			self.initAudio(next);
 			self.audio.volume = volumeValue;
@@ -90,9 +93,9 @@ function AudioPlayer(){
 		},
 		prev: function(){
 			self.audio.pause();
-			var prev = activeAudio.prev();
+			var prev = $activeAudio.prev();
 			if(prev.length ==0){
-				prev = lastSong;
+				prev = $lastSong;
 			}
 			self.initAudio(prev);
 			self.audio.volume = volumeValue;
@@ -145,14 +148,14 @@ function AudioPlayer(){
 				if (s < 10){
 					s = '0' + s;
 				}
-				duration.html(m + ':' + s);
+				$duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
 					progressValue = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
 						if(progressValue > 50){
 							progressValue +=1;
 						}
 				}
-				progress.css('width', progressValue + '%');
+				$progress.css('width', progressValue + '%');
 
 				//play next song after current song have just played
 				if( self.audio.currentTime >= self.audio.duration) {
@@ -166,7 +169,7 @@ function AudioPlayer(){
 				progressValue = parseInt(((e.pageX - offset)/ barWidth)*100);
 				self.audio.pause();
 				self.audio.currentTime = parseInt(self.audio.duration*progressValue/100);
-				progress.css('width', progressValue + '%');
+				$progress.css('width', progressValue + '%');
 				self.audio.play();
 				self.actions.showDuration();
 				self.actions.togglePlayButton();
