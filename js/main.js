@@ -170,6 +170,7 @@ function AudioPlayer(){
 				self.audio.currentTime = parseInt(self.audio.duration*value/100);
 				progress.css('width', value + '%');
 				self.audio.play();
+				self.actions.showDuration();
 				self.actions.togglePlayButton();
 			}
 		};
