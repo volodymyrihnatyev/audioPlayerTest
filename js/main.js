@@ -2,13 +2,15 @@
 
 var audioPlayer = new AudioPlayer();
 audioPlayer.init();
-				var value = 0;
+
 function AudioPlayer(){
+	//value for progress bar
+	var value = 0;
+
 	var self = this;
+
 	var firtSong = $('#playlist li:first-child');
 	var lastSong = $('#playlist li:last-child');
-
-	this.audio = null;
 	var next = $('#next');
 	var prev = $('#prev');
 	var pause = $('#pause');
@@ -20,7 +22,10 @@ function AudioPlayer(){
 	var duration = $('#duration');
 	var progress = $('#progress');
 	var progressbar = $('#progressbar');
+
 	var volumeValue;
+
+	this.audio = null;
 
 	this.init = function(){
 			//Set default volume value in DOM element
@@ -143,7 +148,10 @@ function AudioPlayer(){
 				}
 				duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
-					value = Math.floor((100 / self.audio.duration) *self.audio.currentTime) + 1;
+					value = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
+						if(value > 50){
+							value +=1;
+						}
 				}
 				progress.css('width', value + '%');
 
