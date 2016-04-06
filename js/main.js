@@ -112,6 +112,7 @@ function AudioPlayer(){
 				self.audio.pause();
 				self.audio.currentTime = 0;
 				self.actions.togglePlayButton();
+				value = 0;
 		},
 		pause: function(){
 				self.audio.pause();
