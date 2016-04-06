@@ -164,7 +164,8 @@ function AudioPlayer(){
 		},
 		rewind: function(e){
 				barWidth = $(this).width();
-				value = parseInt(((e.pageX - 496)/ barWidth)*100);
+				var offset = $(this).offset().left;
+				value = parseInt(((e.pageX - offset)/ barWidth)*100);
 				self.audio.pause();
 				self.audio.currentTime = parseInt(self.audio.duration*value/100);
 				progress.css('width', value + '%');
