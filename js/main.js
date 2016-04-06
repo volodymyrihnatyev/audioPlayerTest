@@ -2,7 +2,7 @@
 
 var audioPlayer = new AudioPlayer();
 audioPlayer.init();
-
+				var value = 0;
 function AudioPlayer(){
 	var self = this;
 	var firtSong = $('#playlist li:first-child');
@@ -17,18 +17,25 @@ function AudioPlayer(){
 	var volume = $('#volume');
 	var activeAudio = $('#playlist li.active');
 	var audioInList = $('#playlist li');
-
-	var volumeValue = volume.val() / 10;
+	var duration = $('#duration');
+	var progress = $('#progress');
+	var progressbar = $('#progressbar');
+	var volumeValue;
 
 	this.init = function(){
-			//Set default volume value
+			//Set default volume value in DOM element
 			volume.val($(this).data("default"));
-			//hide pause button
+			
+			//Get default volume value
+			volumeValue = volume.val() / 10;
+
+			//Hide pause button
 			pause.hide();
+
 			//Initialize first song
 			self.initAudio(firtSong);
 
-			//initialize events
+			//Initialize events
 			play.click(self.actions.play);
 			pause.click(self.actions.pause);
 			stop.click(self.actions.stop);
@@ -36,6 +43,7 @@ function AudioPlayer(){
 			prev.click(self.actions.prev);
 			volume.change(self.actions.volumeChange);
 			audioInList.click(self.actions.playAudioInList);
+			progressbar.click(self.actions.rewind);﻿
 	};
 
 	this.initAudio = function(elem){
@@ -133,19 +141,28 @@ function AudioPlayer(){
 				if (s < 10){
 					s = '0' + s;
 				}
-				$('#duration').html(m + ':' + s);
-				var value = 0;
+				duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
-					value = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
+					value = Math.floor((100 / self.audio.duration) *self.audio.currentTime) + 1;
 				}
-				$('#progress').css('width', value + '%');
+				progress.css('width', value + '%');
 
 				//play next song after current song have just played
 				if( self.audio.currentTime >= self.audio.duration) {
 					next.trigger('click');
 				}﻿
 			});
-		}
+		},
+		rewind: function(e){
+				barWidth = $(this).width();
+				perPixel = self.audio.duration / barWidth;
+				value = parseInt(((e.pageX - 496)/ barWidth)*100);
+				self.audio.pause();
+				self.audio.currentTime = parseInt(self.audio.duration*value/100);
+				progress.css('width', value + '%');
+				self.audio.play();
+				self.actions.togglePlayButton();
+			}
 		};
 	};
 })();
