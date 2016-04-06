@@ -4,18 +4,15 @@ var audioPlayer = new AudioPlayer();
 audioPlayer.init();
 
 function AudioPlayer(){
-	//value for progress bar
-	var value = 0;
-
 	var self = this;
 
+	var $nextButton = $('#next');
+	var $prevButton = $('#prev');
+	var $pauseButton = $('#pause');
+	var $stopButton = $('#stop');
+	var $playButton = $('#play');
 	var firtSong = $('#playlist li:first-child');
 	var lastSong = $('#playlist li:last-child');
-	var next = $('#next');
-	var prev = $('#prev');
-	var pause = $('#pause');
-	var stop = $('#stop');
-	var play = $('#play');
 	var volume = $('#volume');
 	var activeAudio = $('#playlist li.active');
 	var audioInList = $('#playlist li');
@@ -23,6 +20,7 @@ function AudioPlayer(){
 	var progress = $('#progress');
 	var progressbar = $('#progressbar');
 
+	var progressValue = 0;
 	var volumeValue;
 
 	this.audio = null;
@@ -35,17 +33,17 @@ function AudioPlayer(){
 			volumeValue = volume.val() / 10;
 
 			//Hide pause button
-			pause.hide();
+			$pauseButton.hide();
 
 			//Initialize first song
 			self.initAudio(firtSong);
 
 			//Initialize events
-			play.click(self.actions.play);
-			pause.click(self.actions.pause);
-			stop.click(self.actions.stop);
-			next.click(self.actions.next);
-			prev.click(self.actions.prev);
+			$playButton.click(self.actions.play);
+			$pauseButton.click(self.actions.pause);
+			$stopButton.click(self.actions.stop);
+			$nextButton.click(self.actions.next);
+			$prevButton.click(self.actions.prev);
 			volume.change(self.actions.volumeChange);
 			audioInList.click(self.actions.playAudioInList);
 			progressbar.click(self.actions.rewind);﻿
@@ -112,7 +110,7 @@ function AudioPlayer(){
 				self.audio.pause();
 				self.audio.currentTime = 0;
 				self.actions.togglePlayButton();
-				value = 0;
+				progressValue = 0;
 		},
 		pause: function(){
 				self.audio.pause();
@@ -131,11 +129,11 @@ function AudioPlayer(){
 		},
 		togglePlayButton: function (){
 				if (!self.audio.paused){
-					play.hide();
-					pause.show();
+					$playButton.hide();
+					$pauseButton.show();
 				} else {
-					pause.hide();
-					play.show();
+					$pauseButton.hide();
+					$playButton.show();
 				}
 		},
 		showDuration: function(){
@@ -149,26 +147,26 @@ function AudioPlayer(){
 				}
 				duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
-					value = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
-						if(value > 50){
-							value +=1;
+					progressValue = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
+						if(progressValue > 50){
+							progressValue +=1;
 						}
 				}
-				progress.css('width', value + '%');
+				progress.css('width', progressValue + '%');
 
 				//play next song after current song have just played
 				if( self.audio.currentTime >= self.audio.duration) {
-					next.trigger('click');
+					$nextButton.trigger('click');
 				}﻿
 			});
 		},
 		rewind: function(e){
 				barWidth = $(this).width();
 				var offset = $(this).offset().left;
-				value = parseInt(((e.pageX - offset)/ barWidth)*100);
+				progressValue = parseInt(((e.pageX - offset)/ barWidth)*100);
 				self.audio.pause();
-				self.audio.currentTime = parseInt(self.audio.duration*value/100);
-				progress.css('width', value + '%');
+				self.audio.currentTime = parseInt(self.audio.duration*progressValue/100);
+				progress.css('width', progressValue + '%');
 				self.audio.play();
 				self.actions.showDuration();
 				self.actions.togglePlayButton();
