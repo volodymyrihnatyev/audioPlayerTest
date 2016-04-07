@@ -151,9 +151,6 @@ function AudioPlayer(){
 				$duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
 					progressValue = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
-						if(progressValue > 50){
-							progressValue +=1;
-						}
 				}
 				$progress.css('width', progressValue + '%');
 
