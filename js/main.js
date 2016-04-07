@@ -145,9 +145,7 @@ function AudioPlayer(){
 				var s = parseInt(self.audio.currentTime % 60);
 				var m = parseInt(self.audio.currentTime / 60) % 60;
 				//Add 0 if less than 10
-				if (s < 10){
-					s = '0' + s;
-				}
+				s = s < 10 ? '0' + s : s;
 				$duration.html(m + ':' + s);
 				if(self.audio.currentTime > 0){
 					progressValue = Math.floor((100 / self.audio.duration) *self.audio.currentTime);
