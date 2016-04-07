@@ -11,7 +11,7 @@ function AudioPlayer(){
 	var $pauseButton = $('#pause');
 	var $stopButton = $('#stop');
 	var $playButton = $('#play');
-	var $firtSong = $('#playlist li:first-child');
+	var $firstSong = $('#playlist li:first-child');
 	var $lastSong = $('#playlist li:last-child');
 	var $volume = $('#volume');
 	var $activeAudio = $('#playlist li.active');
@@ -39,7 +39,7 @@ function AudioPlayer(){
 			$pauseButton.hide();
 
 			//Initialize first song
-			self.initAudio($firtSong);
+			self.initAudio($firstSong);
 
 			//Initialize events
 			$playButton.click(self.actions.play);
@@ -80,7 +80,7 @@ function AudioPlayer(){
 			self.audio.pause();
 			var next = $activeAudio.next();
 			if(next.length ==0){
-				next = $firtSong;
+				next = $firstSong;
 			}
 			self.initAudio(next);
 			self.audio.volume = volumeValue;
@@ -131,12 +131,12 @@ function AudioPlayer(){
 				volumeValue = self.audio.volume = this.value / 10;
 		},
 		togglePlayButton: function (){
-				if (!self.audio.paused){
-					$playButton.hide();
-					$pauseButton.show();
-				} else {
+				if (self.audio.paused){
 					$pauseButton.hide();
 					$playButton.show();
+				} else {
+					$playButton.hide();
+					$pauseButton.show();
 				}
 		},
 		showDuration: function(){
