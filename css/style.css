@@ -32,7 +32,6 @@
 
 #audio-image {
 	position: relative;
-	overflow: hidden;
 	height: 200px;
 	margin-bottom: 15px;
 }
@@ -51,7 +50,6 @@
 
 #volume {
 	width: 95%;
-	-webkit-appearence: none !important;
 	margin: 7% 2%;
 	background: #ccc;
 	height: 1px;
@@ -112,10 +110,6 @@
 
 button:hover {
 	cursor: pointer;
-}
-
-button:active {
-	outline: none;
 }
 
 #playlist {
