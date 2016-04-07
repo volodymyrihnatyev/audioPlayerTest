@@ -152,6 +152,9 @@ button:hover {
 	background: rgb(102, 5, 102);
 	position: relative;
 	top: -5px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 #duration {
