@@ -52,7 +52,7 @@
 	width: 95%;
 	margin: 7% 2%;
 	background: #ccc;
-	height: 1px;
+	height: 3px;
 }
 
 #volume:hover {
@@ -131,15 +131,15 @@ button:hover {
 
 #progressbar {
 	width: 80%;
-	height: 10px;
+	height: 9px;
 	margin-left: 2%;
 	margin-top: 9px;
 	margin-bottom: 20px;  
 	float: left;
 	border: #000 1px solid;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 #progressbar:hover {
@@ -152,16 +152,13 @@ button:hover {
 	background: rgb(102, 5, 102);
 	position: relative;
 	top: -5px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
 }
 
 #duration {
 	position: absolute;
-	top: 2px;
 	right: 5px;
 	padding: 4px 10px;
+	font-family: 'Lobster', sans-serif, cursive;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
