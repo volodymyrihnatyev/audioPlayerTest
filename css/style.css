@@ -49,7 +49,7 @@
 	font-size: 24px;
 }
 
-input#volume {
+#volume {
 	width: 95%;
 	-webkit-appearence: none !important;
 	margin: 7% 2%;
@@ -57,18 +57,11 @@ input#volume {
 	height: 1px;
 }
 
-input#volume-webkit-slider-thumb {
-	-webkit-appearence: none !important;
-	background: #ccc;
-	height: 12px;
-	width: 12px;
-}
-
-input:hover {
+#volume:hover {
 	cursor: pointer;
 }
 
-input:focus {
+#volume:focus {
 	outline: none;
 }
 
@@ -80,7 +73,7 @@ input:focus {
 	overflow: auto;
 }
 
-button#play {
+#play {
 	width: 70px;
 	height: 70px;
 	margin-left: 3%;
@@ -88,7 +81,7 @@ button#play {
 	float: left;
 }
 
-button#pause {
+#pause {
 	width: 70px;
 	height: 70px;
 	margin-left: 3%;
@@ -96,21 +89,21 @@ button#pause {
 	float: left;
 }
 
-button#stop {
+#stop {
 	width: 70px;
 	height: 70px;
 	background: url(../img/stop.png) no-repeat;
 	float: left;
 }
 
-button#prev {
+#prev {
 	width: 70px;
 	height: 70px;
 	background: url(../img/prev.png) no-repeat;
 	float: left;
 }
 
-button#next {
+#next {
 	width: 70px;
 	height: 70px;
 	background: url(../img/next.png) no-repeat;
